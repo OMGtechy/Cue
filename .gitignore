@@ -1,0 +1,12 @@
+/test/build/**
+!/test/build/CMakeLists.txt
+
+*.swp
+*.cmake
+*.bin
+*.out
+*.log
+*.make
+*.includecache
+*.o
+*.marks
