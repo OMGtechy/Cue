@@ -23,6 +23,18 @@ namespace cue_test
 
     TYPED_TEST (MetresTest, FromMetresCompiles)
     {
-        Metres<TypeParam>::fromMetres (TypeParam ());
+        Metres<TypeParam>::fromMetres (TypeParam());
+    }
+
+    TYPED_TEST (MetresTest, AddSameType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Metres<TypeParam>::fromMetres (TypeParam (1)) +
+                Metres<TypeParam>::fromMetres (TypeParam (1))
+            ).getRawValue(),
+            2
+        );
     }
 }
