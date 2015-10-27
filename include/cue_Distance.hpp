@@ -17,4 +17,21 @@ namespace cue
     protected:
         using Unit<StorageType>::Unit;
     };
+
+    template <typename StorageType>
+    class Centimetres : public Unit<StorageType>
+    {
+    public:
+        static Centimetres fromCentimetres (StorageType centimetres) noexcept
+        { return Centimetres (centimetres); }
+
+        Centimetres operator+ (Centimetres rhs) noexcept
+        { return Centimetres (this->getRawValue() + rhs.getRawValue()); }
+
+        Centimetres operator+ (Metres<StorageType> rhs) noexcept
+        { return Centimetres (this->getRawValue() + rhs.getRawValue() * 100); }
+
+    protected:
+        using Unit<StorageType>::Unit;
+    };
 }
