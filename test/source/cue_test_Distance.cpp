@@ -7,9 +7,12 @@ namespace cue_test
     using namespace ::cue;
     using Types = ::testing::Types
     <
-        int,
-        long,
-        long long,
+        unsigned int,
+        signed int,
+        unsigned long,
+        signed long,
+        unsigned long long,
+        signed long long,
         float,
         double
     >;
