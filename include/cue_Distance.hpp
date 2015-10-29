@@ -4,6 +4,8 @@
 
 namespace cue
 {
+    template <typename StorageType> class Centimetres;
+
     template <typename StorageType>
     class Metres : public Unit<StorageType>
     {
@@ -13,6 +15,8 @@ namespace cue
 
         Metres operator+ (Metres rhs) noexcept
         { return Metres (this->getRawValue() + rhs.getRawValue()); }
+
+        Metres operator+ (Centimetres<StorageType> rhs) noexcept;
 
     protected:
         using Unit<StorageType>::Unit;
@@ -34,4 +38,8 @@ namespace cue
     protected:
         using Unit<StorageType>::Unit;
     };
+
+    template <typename StorageType>
+    Metres<StorageType> Metres<StorageType>::operator+ (Centimetres<StorageType> rhs) noexcept
+    { return Metres<StorageType> (this->getRawValue() + rhs.getRawValue() / StorageType (100)); }
 }
