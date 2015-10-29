@@ -7,7 +7,6 @@ namespace cue_test
     using namespace ::cue;
     using Types = ::testing::Types
     <
-        char,
         short,
         int,
         long,
