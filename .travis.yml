@@ -1,0 +1,21 @@
+language: cpp
+
+compiler:
+    - clang
+    - gcc
+
+before_script:
+    - sudo apt-get update -qq
+    - sudo apt-get install cmake libgtest-dev
+    - cd ./tests/build
+    - mkdir ./cmake_build
+    - cd ./cmake_build
+    - mkdir ./gtest
+    - cd ./gtest
+    - cmake /usr/src/gtest
+    - make
+    - sudo mv libg* /usr/lib
+    - cd ../
+    - cmake ../
+
+script: ./cue_tests
