@@ -52,6 +52,18 @@ namespace cue_test
         );
     }
 
+    TYPED_TEST (MetresTest, AddMillimetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Metres<TypeParam>::fromMetres (TypeParam (1)) +
+                Millimetres<TypeParam>::fromMillimetres (TypeParam (1000))
+            ).getRawValue(),
+            TypeParam (2)
+        );
+    }
+
     TYPED_TEST (CentimetresTest, AddSameType)
     {
         ASSERT_EQ
