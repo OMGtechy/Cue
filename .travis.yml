@@ -30,9 +30,8 @@ before_script:
     - cd build
     - cmake ../
     - make
-    - mv libg* ../../../
     - cd ../../../
-    - cmake ../
+    - cmake ../ -DGTEST_INCLUDE=./googletest/googletest/include -DGTEST_LIB=./googletest/googletest/build
     - make
 
 script: ./cue_tests
