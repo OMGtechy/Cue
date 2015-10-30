@@ -11,4 +11,4 @@ link_directories (${GTEST_LIB})
 add_definitions (-std=c++14)
 
 add_executable (cue_tests ${cue_source})
-target_link_libraries (cue_tests gtest gtest_main)
+target_link_libraries (cue_tests gtest gtest_main pthread)
