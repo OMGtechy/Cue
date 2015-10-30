@@ -12,7 +12,6 @@ addons:
             - kalakris-cmake
         packages:
             - cmake
-            - libgtest-dev
             - g++-5
             - gcc-5
             - clang-3.8
