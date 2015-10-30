@@ -15,6 +15,7 @@ addons:
             - g++-5
             - gcc-5
             - clang-3.8
+            - git
 
 before_script:
     - if [ "$CXX" = "g++" ];     then export CXX="g++-5"       CC="gcc-5";     fi
@@ -22,11 +23,13 @@ before_script:
     - cd ./test/build
     - mkdir ./cmake_build
     - cd ./cmake_build
-    - mkdir ./gtest
-    - cd ./gtest
-    - cmake /usr/src/gtest
+    - git clone https://github.com/google/googletest.git
+    - cd ./googletest/googletest
+    - mkdir build
+    - cd build
+    - cmake ../
     - make
-    - mv libg* ../
+    - mv libg* ../../../
     - cd ../
     - cmake ../
     - make
