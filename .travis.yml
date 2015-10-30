@@ -17,6 +17,8 @@ addons:
             - clang-3.8
 
 before_script:
+    - if [ "$CXX" = "g++" ];     then export CXX="g++-5"       CC="gcc-5";     fi
+    - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.8" CC="clang-3.8"; fi
     - cd ./test/build
     - mkdir ./cmake_build
     - cd ./cmake_build
@@ -28,7 +30,5 @@ before_script:
     - cd ../
     - cmake ../
     - make
-    - if [ "$CXX" = "g++" ];     then export CXX="g++-5"       CC="gcc-5";     fi
-    - if [ "$CXX" = "clang++" ]; then export CXX="clang++-3.8" CC="clang-3.8"; fi
 
 script: ./cue_tests
