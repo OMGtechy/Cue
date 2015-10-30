@@ -33,10 +33,10 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Metres<TypeParam>::fromMetres (TypeParam (1)) +
-                Metres<TypeParam>::fromMetres (TypeParam (1))
+                Metres<TypeParam>::fromMetres (1) +
+                Metres<TypeParam>::fromMetres (1)
             ).getRawValue(),
-            2
+            TypeParam (2)
         );
     }
 
@@ -45,8 +45,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Metres<TypeParam>::fromMetres (TypeParam (1)) +
-                Centimetres<TypeParam>::fromCentimetres (TypeParam (200))
+                Metres<TypeParam>::fromMetres (1) +
+                Centimetres<TypeParam>::fromCentimetres (200)
             ).getRawValue(),
             TypeParam (3)
         );
@@ -57,8 +57,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Metres<TypeParam>::fromMetres (TypeParam (1)) +
-                Millimetres<TypeParam>::fromMillimetres (TypeParam (1000))
+                Metres<TypeParam>::fromMetres (1) +
+                Millimetres<TypeParam>::fromMillimetres (1000)
             ).getRawValue(),
             TypeParam (2)
         );
@@ -69,10 +69,10 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Centimetres<TypeParam>::fromCentimetres (TypeParam (1)) +
-                Centimetres<TypeParam>::fromCentimetres (TypeParam (1))
+                Centimetres<TypeParam>::fromCentimetres (1) +
+                Centimetres<TypeParam>::fromCentimetres (1)
             ).getRawValue(),
-            2
+            TypeParam (2)
         );
     }
 
@@ -81,10 +81,10 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Centimetres<TypeParam>::fromCentimetres (TypeParam (1)) +
-                Metres<TypeParam>::fromMetres (TypeParam (1))
+                Centimetres<TypeParam>::fromCentimetres (1) +
+                Metres<TypeParam>::fromMetres (1)
             ).getRawValue(),
-            101
+            TypeParam (101)
         );
     }
 }

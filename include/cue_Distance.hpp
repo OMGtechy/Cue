@@ -75,7 +75,7 @@ namespace cue
 
     template <typename StorageType>
     Centimetres<StorageType> Centimetres<StorageType>::operator+ (Millimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() + rhs.getRawValue() / StorageType(10) }; }
+    { return { this->getRawValue() + rhs.getRawValue() / StorageType (10) }; }
 
     template <typename StorageType>
     Centimetres<StorageType> Centimetres<StorageType>::operator+ (Centimetres<StorageType> rhs) const noexcept
@@ -83,7 +83,7 @@ namespace cue
 
     template <typename StorageType>
     Centimetres<StorageType> Centimetres<StorageType>::operator+ (Metres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() + rhs.getRawValue() * 100 }; }
+    { return { this->getRawValue() + rhs.getRawValue() * StorageType (100) }; }
 
     // Millimetres
 
