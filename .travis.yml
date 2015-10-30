@@ -4,10 +4,15 @@ compiler:
     - clang
     - gcc
 
+addons:
+    apt:
+        sources:
+            - kalakris-cmake
+        packages:
+            - cmake
+            - libgtest-dev
+
 before_script:
-    - sudo add-apt-repository ppa:george-edison55/cmake-3.x -y
-    - sudo apt-get update -qq
-    - sudo apt-get install -y cmake libgtest-dev
     - cd ./test/build
     - mkdir ./cmake_build
     - cd ./cmake_build
@@ -15,7 +20,7 @@ before_script:
     - cd ./gtest
     - cmake /usr/src/gtest
     - make
-    - sudo mv libg* /usr/lib
+    - mv libg* ../
     - cd ../
     - cmake ../
 
