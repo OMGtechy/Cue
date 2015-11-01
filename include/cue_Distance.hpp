@@ -133,11 +133,11 @@ namespace cue
 
     template <typename StorageType>
     Millimetres<StorageType> Millimetres<StorageType>::operator+ (Centimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() + rhs.getRawValue() }; }
+    { return { this->getRawValue() + rhs.getRawValue() * StorageType (10) }; }
 
     template <typename StorageType>
     Millimetres<StorageType> Millimetres<StorageType>::operator+ (Metres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() + rhs.getRawValue() / StorageType (1000) }; }
+    { return { this->getRawValue() + rhs.getRawValue() * StorageType (1000) }; }
 
     template <typename StorageType>
     Millimetres<StorageType> Millimetres<StorageType>::operator- (Millimetres<StorageType> rhs) const noexcept
@@ -145,9 +145,9 @@ namespace cue
 
     template <typename StorageType>
     Millimetres<StorageType> Millimetres<StorageType>::operator- (Centimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() - rhs.getRawValue() }; }
+    { return { this->getRawValue() - rhs.getRawValue() * StorageType (10) }; }
 
     template <typename StorageType>
     Millimetres<StorageType> Millimetres<StorageType>::operator- (Metres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() - rhs.getRawValue() / StorageType (1000) }; }
+    { return { this->getRawValue() - rhs.getRawValue() * StorageType (1000) }; }
 }
