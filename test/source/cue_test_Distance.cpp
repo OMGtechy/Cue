@@ -90,18 +90,6 @@ namespace cue_test
         );
     }
 
-    TYPED_TEST (CentimetresTest, SubtractSameType)
-    {
-        ASSERT_EQ
-        (
-            (
-                Centimetres<TypeParam>::fromCentimetres (2) -
-                Centimetres<TypeParam>::fromCentimetres (1)
-            ).getRawValue(),
-            TypeParam (1)
-        );
-    }
-
     TYPED_TEST (CentimetresTest, AddMetresSameStorageType)
     {
         ASSERT_EQ
@@ -114,6 +102,90 @@ namespace cue_test
         );
     }
 
+    TYPED_TEST (CentimetresTest, AddMillimetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Centimetres<TypeParam>::fromCentimetres (1) +
+                Millimetres<TypeParam>::fromMillimetres (10)
+            ).getRawValue(),
+            TypeParam (2)
+        );
+    }
+
+    TYPED_TEST (CentimetresTest, SubtractSameType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Centimetres<TypeParam>::fromCentimetres (2) -
+                Centimetres<TypeParam>::fromCentimetres (1)
+            ).getRawValue(),
+            TypeParam (1)
+        );
+    }
+
+    TYPED_TEST (CentimetresTest, SubtractMillimetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Centimetres<TypeParam>::fromCentimetres (2) -
+                Millimetres<TypeParam>::fromMillimetres (10)
+            ).getRawValue(),
+            TypeParam (1)
+        );
+    }
+
+    TYPED_TEST (CentimetresTest, SubtractMetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Centimetres<TypeParam>::fromCentimetres (200) -
+                Metres<TypeParam>::fromMetres (1)
+            ).getRawValue(),
+            TypeParam (100)
+        );
+    }
+
+    TYPED_TEST (MillimetresTest, AddSameType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Millimetres<TypeParam>::fromMillimetres (1) +
+                Millimetres<TypeParam>::fromMillimetres (1)
+            ).getRawValue(),
+            TypeParam (2)
+        );
+    }
+
+    TYPED_TEST (MillimetresTest, AddCentimetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Millimetres<TypeParam>::fromMillimetres (10) +
+                Centimetres<TypeParam>::fromCentimetres (1)
+            ).getRawValue(),
+            TypeParam (20)
+        );
+    }
+
+    TYPED_TEST (MillimetresTest, AddMetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Millimetres<TypeParam>::fromMillimetres (10) +
+                Metres<TypeParam>::fromMetres (1)
+            ).getRawValue(),
+            TypeParam (1010)
+        );
+    }
+
     TYPED_TEST (MillimetresTest, SubtractSameType)
     {
         ASSERT_EQ
@@ -123,6 +195,30 @@ namespace cue_test
                 Millimetres<TypeParam>::fromMillimetres (1)
             ).getRawValue(),
             TypeParam (1)
+        );
+    }
+
+    TYPED_TEST (MillimetresTest, SubtractCentimetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Millimetres<TypeParam>::fromMillimetres (1000) -
+                Centimetres<TypeParam>::fromCentimetres (99)
+            ).getRawValue(),
+            TypeParam (10)
+        );
+    }
+
+    TYPED_TEST (MillimetresTest, SubtractMetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Millimetres<TypeParam>::fromMillimetres (100) -
+                Centimetres<TypeParam>::fromCentimetres (5)
+            ).getRawValue(),
+            TypeParam (50)
         );
     }
 }
