@@ -7,12 +7,12 @@ namespace cue
     {
     public:
         explicit Unit (StorageType initialValue) noexcept : m_rawValue (initialValue) { };
-        explicit Unit (DerivedType<StorageType> other) noexcept : Unit (other.getRawValue()) { };
+        explicit Unit (const DerivedType<StorageType>& other) noexcept : Unit (other.getRawValue()) { };
         ~Unit() noexcept = default;
 
         StorageType getRawValue() const noexcept { return this->m_rawValue; }
 
-        DerivedType<StorageType> operator= (DerivedType<StorageType> other)
+        DerivedType<StorageType> operator= (const DerivedType<StorageType>& other)
         { return { other }; }
 
         template <typename OtherType>
