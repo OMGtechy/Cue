@@ -25,18 +25,13 @@ namespace cue_test
     TYPED_TEST_CASE (CentimetresTest, Types);
     TYPED_TEST_CASE (MillimetresTest, Types);
 
-    TYPED_TEST (MetresTest, FromMetresCompiles)
-    {
-        Metres<TypeParam>::fromMetres (TypeParam());
-    }
-
     TYPED_TEST (MetresTest, AddSameType)
     {
         ASSERT_EQ
         (
             (
-                Metres<TypeParam>::fromMetres (1) +
-                Metres<TypeParam>::fromMetres (1)
+                Metres<TypeParam> (TypeParam (1)) +
+                Metres<TypeParam> (TypeParam (1))
             ).getRawValue(),
             TypeParam (2)
         );
@@ -47,8 +42,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Metres<TypeParam>::fromMetres (1) +
-                Centimetres<TypeParam>::fromCentimetres (200)
+                Metres<TypeParam> (TypeParam (1)) +
+                Centimetres<TypeParam> (TypeParam (200))
             ).getRawValue(),
             TypeParam (3)
         );
@@ -59,8 +54,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Metres<TypeParam>::fromMetres (1) +
-                Millimetres<TypeParam>::fromMillimetres (1000)
+                Metres<TypeParam> (TypeParam (1)) +
+                Millimetres<TypeParam> (TypeParam (1000))
             ).getRawValue(),
             TypeParam (2)
         );
@@ -71,8 +66,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Metres<TypeParam>::fromMetres (3) -
-                Metres<TypeParam>::fromMetres (2)
+                Metres<TypeParam> (TypeParam (3)) -
+                Metres<TypeParam> (TypeParam (2))
             ).getRawValue(),
             TypeParam (1)
         );
@@ -83,8 +78,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Centimetres<TypeParam>::fromCentimetres (1) +
-                Centimetres<TypeParam>::fromCentimetres (1)
+                Centimetres<TypeParam> (TypeParam (1)) +
+                Centimetres<TypeParam> (TypeParam (1))
             ).getRawValue(),
             TypeParam (2)
         );
@@ -95,8 +90,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Centimetres<TypeParam>::fromCentimetres (1) +
-                Metres<TypeParam>::fromMetres (1)
+                Centimetres<TypeParam> (TypeParam (1)) +
+                Metres<TypeParam> (TypeParam (1))
             ).getRawValue(),
             TypeParam (101)
         );
@@ -107,8 +102,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Centimetres<TypeParam>::fromCentimetres (1) +
-                Millimetres<TypeParam>::fromMillimetres (10)
+                Centimetres<TypeParam> (TypeParam (1)) +
+                Millimetres<TypeParam> (TypeParam (10))
             ).getRawValue(),
             TypeParam (2)
         );
@@ -119,8 +114,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Centimetres<TypeParam>::fromCentimetres (2) -
-                Centimetres<TypeParam>::fromCentimetres (1)
+                Centimetres<TypeParam> (TypeParam (2)) -
+                Centimetres<TypeParam> (TypeParam (1))
             ).getRawValue(),
             TypeParam (1)
         );
@@ -131,8 +126,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Centimetres<TypeParam>::fromCentimetres (2) -
-                Millimetres<TypeParam>::fromMillimetres (10)
+                Centimetres<TypeParam> (TypeParam (2)) -
+                Millimetres<TypeParam> (TypeParam (10))
             ).getRawValue(),
             TypeParam (1)
         );
@@ -143,8 +138,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Centimetres<TypeParam>::fromCentimetres (200) -
-                Metres<TypeParam>::fromMetres (1)
+                Centimetres<TypeParam> (TypeParam (200)) -
+                Metres<TypeParam> (TypeParam (1))
             ).getRawValue(),
             TypeParam (100)
         );
@@ -155,8 +150,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Millimetres<TypeParam>::fromMillimetres (1) +
-                Millimetres<TypeParam>::fromMillimetres (1)
+                Millimetres<TypeParam> (TypeParam (1)) +
+                Millimetres<TypeParam> (TypeParam (1))
             ).getRawValue(),
             TypeParam (2)
         );
@@ -167,8 +162,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Millimetres<TypeParam>::fromMillimetres (10) +
-                Centimetres<TypeParam>::fromCentimetres (1)
+                Millimetres<TypeParam> (TypeParam (10)) +
+                Centimetres<TypeParam> (TypeParam (1))
             ).getRawValue(),
             TypeParam (20)
         );
@@ -179,8 +174,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Millimetres<TypeParam>::fromMillimetres (10) +
-                Metres<TypeParam>::fromMetres (1)
+                Millimetres<TypeParam> (TypeParam (10)) +
+                Metres<TypeParam> (TypeParam (1))
             ).getRawValue(),
             TypeParam (1010)
         );
@@ -191,8 +186,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Millimetres<TypeParam>::fromMillimetres (2) -
-                Millimetres<TypeParam>::fromMillimetres (1)
+                Millimetres<TypeParam> (TypeParam (2)) -
+                Millimetres<TypeParam> (TypeParam (1))
             ).getRawValue(),
             TypeParam (1)
         );
@@ -203,8 +198,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Millimetres<TypeParam>::fromMillimetres (1000) -
-                Centimetres<TypeParam>::fromCentimetres (99)
+                Millimetres<TypeParam> (TypeParam (1000)) -
+                Centimetres<TypeParam> (TypeParam (99))
             ).getRawValue(),
             TypeParam (10)
         );
@@ -215,8 +210,8 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Millimetres<TypeParam>::fromMillimetres (100) -
-                Centimetres<TypeParam>::fromCentimetres (5)
+                Millimetres<TypeParam> (TypeParam (100)) -
+                Centimetres<TypeParam> (TypeParam (5))
             ).getRawValue(),
             TypeParam (50)
         );

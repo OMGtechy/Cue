@@ -4,150 +4,56 @@
 
 namespace cue
 {
-    template <typename StorageType> class Centimetres;
     template <typename StorageType> class Millimetres;
+    template <typename StorageType> class Centimetres;
+    template <typename StorageType> class Metres;
 
     template <typename StorageType>
-    class Metres : public Unit<StorageType>
+    class Metres : public Unit<StorageType, Metres>
     {
     public:
-        static Metres fromMetres (StorageType metres) noexcept;
+        using Unit<StorageType, ::cue::Metres>::Unit;
 
-        Metres operator+ (Metres rhs) const noexcept;
-        Metres operator+ (Centimetres<StorageType> rhs) const noexcept;
-        Metres operator+ (Millimetres<StorageType> rhs) const noexcept;
-
-        Metres operator- (Metres rhs) const noexcept;
-        Metres operator- (Centimetres<StorageType> rhs) const noexcept;
-        Metres operator- (Millimetres<StorageType> rhs) const noexcept;
-
-    protected:
-        using Unit<StorageType>::Unit;
+        explicit Metres (const Millimetres<StorageType>&) noexcept;
+        explicit Metres (const Centimetres<StorageType>&) noexcept;
     };
 
     template <typename StorageType>
-    class Centimetres : public Unit<StorageType>
+    class Centimetres : public Unit<StorageType, Centimetres>
     {
     public:
-        static Centimetres fromCentimetres (StorageType centimetres) noexcept;
+        using Unit<StorageType, ::cue::Centimetres>::Unit;
 
-        Centimetres operator+ (Centimetres rhs) const noexcept;
-        Centimetres operator+ (Metres<StorageType> rhs) const noexcept;
-        Centimetres operator+ (Millimetres<StorageType> rhs) const noexcept;
-
-        Centimetres operator- (Centimetres rhs) const noexcept;
-        Centimetres operator- (Metres<StorageType> rhs) const noexcept;
-        Centimetres operator- (Millimetres<StorageType> rhs) const noexcept;
-
-    protected:
-        using Unit<StorageType>::Unit;
+        explicit Centimetres (const Millimetres<StorageType>&) noexcept;
+        explicit Centimetres (const Metres<StorageType>&)      noexcept;
     };
 
     template <typename StorageType>
-    class Millimetres : public Unit<StorageType>
+    class Millimetres : public Unit<StorageType, Millimetres>
     {
     public:
-        static Millimetres fromMillimetres (StorageType millimetres) noexcept;
+        using Unit<StorageType, ::cue::Millimetres>::Unit;
 
-        Millimetres operator+ (Millimetres rhs) const noexcept;
-        Millimetres operator+ (Metres<StorageType> rhs) const noexcept;
-        Millimetres operator+ (Centimetres<StorageType> rhs) const noexcept;
-
-        Millimetres operator- (Millimetres rhs) const noexcept;
-        Millimetres operator- (Metres<StorageType> rhs) const noexcept;
-        Millimetres operator- (Centimetres<StorageType> rhs) const noexcept;
-
-    protected:
-        using Unit<StorageType>::Unit;
+        explicit Millimetres (const Centimetres<StorageType>&) noexcept;
+        explicit Millimetres (const Metres<StorageType>&)      noexcept;
     };
 
-    // Metres
+    template <typename StorageType>
+    Metres<StorageType>::Metres (const Millimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() / StorageType (1000)); }
 
     template <typename StorageType>
-    Metres<StorageType> Metres<StorageType>::fromMetres (StorageType metres) noexcept
-    { return { metres }; }
+    Metres<StorageType>::Metres (const Centimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() / StorageType (100)); }
 
     template <typename StorageType>
-    Metres<StorageType> Metres<StorageType>::operator+ (Millimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() + rhs.getRawValue() / StorageType (1000) }; }
+    Centimetres<StorageType>::Centimetres (const Millimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() / StorageType (10)); }
 
     template <typename StorageType>
-    Metres<StorageType> Metres<StorageType>::operator+ (Centimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() + rhs.getRawValue() / StorageType (100) }; }
+    Centimetres<StorageType>::Centimetres (const Metres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() * StorageType (100)); }
 
     template <typename StorageType>
-    Metres<StorageType> Metres<StorageType>::operator+ (Metres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() + rhs.getRawValue() }; }
+    Millimetres<StorageType>::Millimetres (const Centimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() * StorageType (10)); }
 
     template <typename StorageType>
-    Metres<StorageType> Metres<StorageType>::operator- (Millimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() - rhs.getRawValue() / StorageType (1000) }; }
-
-    template <typename StorageType>
-    Metres<StorageType> Metres<StorageType>::operator- (Centimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() - rhs.getRawValue() / StorageType (100) }; }
-
-    template <typename StorageType>
-    Metres<StorageType> Metres<StorageType>::operator- (Metres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() - rhs.getRawValue() }; }
-
-    // Centimetres
-
-    template <typename StorageType>
-    Centimetres<StorageType> Centimetres<StorageType>::fromCentimetres (StorageType centimetres) noexcept
-    { return { centimetres }; }
-
-    template <typename StorageType>
-    Centimetres<StorageType> Centimetres<StorageType>::operator+ (Millimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() + rhs.getRawValue() / StorageType (10) }; }
-
-    template <typename StorageType>
-    Centimetres<StorageType> Centimetres<StorageType>::operator+ (Centimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() + rhs.getRawValue() }; }
-
-    template <typename StorageType>
-    Centimetres<StorageType> Centimetres<StorageType>::operator+ (Metres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() + rhs.getRawValue() * StorageType (100) }; }
-
-    template <typename StorageType>
-    Centimetres<StorageType> Centimetres<StorageType>::operator- (Millimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() - rhs.getRawValue() / StorageType (10) }; }
-
-    template <typename StorageType>
-    Centimetres<StorageType> Centimetres<StorageType>::operator- (Centimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() - rhs.getRawValue() }; }
-
-    template <typename StorageType>
-    Centimetres<StorageType> Centimetres<StorageType>::operator- (Metres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() - rhs.getRawValue() * StorageType (100) }; }
-
-    // Millimetres
-
-    template <typename StorageType>
-    Millimetres<StorageType> Millimetres<StorageType>::fromMillimetres (StorageType millimetres) noexcept
-    { return { millimetres }; }
-
-    template <typename StorageType>
-    Millimetres<StorageType> Millimetres<StorageType>::operator+ (Millimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() + rhs.getRawValue() }; }
-
-    template <typename StorageType>
-    Millimetres<StorageType> Millimetres<StorageType>::operator+ (Centimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() + rhs.getRawValue() * StorageType (10) }; }
-
-    template <typename StorageType>
-    Millimetres<StorageType> Millimetres<StorageType>::operator+ (Metres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() + rhs.getRawValue() * StorageType (1000) }; }
-
-    template <typename StorageType>
-    Millimetres<StorageType> Millimetres<StorageType>::operator- (Millimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() - rhs.getRawValue() }; }
-
-    template <typename StorageType>
-    Millimetres<StorageType> Millimetres<StorageType>::operator- (Centimetres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() - rhs.getRawValue() * StorageType (10) }; }
-
-    template <typename StorageType>
-    Millimetres<StorageType> Millimetres<StorageType>::operator- (Metres<StorageType> rhs) const noexcept
-    { return { this->getRawValue() - rhs.getRawValue() * StorageType (1000) }; }
+    Millimetres<StorageType>::Millimetres (const Metres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() * StorageType (1000)); }
 }
+
