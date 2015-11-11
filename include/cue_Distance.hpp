@@ -14,8 +14,8 @@ namespace cue
     public:
         using Unit<StorageType, ::cue::Metres>::Unit;
 
-        explicit Metres (const Millimetres<StorageType>&) noexcept;
-        explicit Metres (const Centimetres<StorageType>&) noexcept;
+        explicit constexpr Metres (const Millimetres<StorageType>&) noexcept;
+        explicit constexpr Metres (const Centimetres<StorageType>&) noexcept;
     };
 
     template <typename StorageType>
@@ -24,8 +24,8 @@ namespace cue
     public:
         using Unit<StorageType, ::cue::Centimetres>::Unit;
 
-        explicit Centimetres (const Millimetres<StorageType>&) noexcept;
-        explicit Centimetres (const Metres<StorageType>&)      noexcept;
+        explicit constexpr Centimetres (const Millimetres<StorageType>&) noexcept;
+        explicit constexpr Centimetres (const Metres<StorageType>&)      noexcept;
     };
 
     template <typename StorageType>
@@ -34,26 +34,26 @@ namespace cue
     public:
         using Unit<StorageType, ::cue::Millimetres>::Unit;
 
-        explicit Millimetres (const Centimetres<StorageType>&) noexcept;
-        explicit Millimetres (const Metres<StorageType>&)      noexcept;
+        explicit constexpr Millimetres (const Centimetres<StorageType>&) noexcept;
+        explicit constexpr Millimetres (const Metres<StorageType>&)      noexcept;
     };
 
     template <typename StorageType>
-    Metres<StorageType>::Metres (const Millimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() / StorageType (1000)); }
+    constexpr Metres<StorageType>::Metres (const Millimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() / StorageType (1000)); }
 
     template <typename StorageType>
-    Metres<StorageType>::Metres (const Centimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() / StorageType (100)); }
+    constexpr Metres<StorageType>::Metres (const Centimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() / StorageType (100)); }
 
     template <typename StorageType>
-    Centimetres<StorageType>::Centimetres (const Millimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() / StorageType (10)); }
+    constexpr Centimetres<StorageType>::Centimetres (const Millimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() / StorageType (10)); }
 
     template <typename StorageType>
-    Centimetres<StorageType>::Centimetres (const Metres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() * StorageType (100)); }
+    constexpr Centimetres<StorageType>::Centimetres (const Metres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() * StorageType (100)); }
 
     template <typename StorageType>
-    Millimetres<StorageType>::Millimetres (const Centimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() * StorageType (10)); }
+    constexpr Millimetres<StorageType>::Millimetres (const Centimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() * StorageType (10)); }
 
     template <typename StorageType>
-    Millimetres<StorageType>::Millimetres (const Metres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() * StorageType (1000)); }
+    constexpr Millimetres<StorageType>::Millimetres (const Metres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() * StorageType (1000)); }
 }
 

@@ -6,35 +6,35 @@ namespace cue
     class Unit
     {
     public:
-        explicit Unit (StorageType initialValue) noexcept : m_rawValue (initialValue) { };
-        explicit Unit (const DerivedType<StorageType>& other) noexcept : Unit (other.getRawValue()) { };
+        explicit constexpr Unit (StorageType initialValue) noexcept : m_rawValue (initialValue) { };
+        explicit constexpr Unit (const DerivedType<StorageType>& other) noexcept : Unit (other.getRawValue()) { };
         ~Unit() noexcept = default;
 
-        StorageType getRawValue() const noexcept { return this->m_rawValue; }
+        constexpr StorageType getRawValue() const noexcept { return this->m_rawValue; }
 
-        DerivedType<StorageType> operator= (const DerivedType<StorageType>& other)
+        constexpr DerivedType<StorageType> operator= (const DerivedType<StorageType>& other)
         { return { other }; }
 
         template <typename OtherType>
-        auto operator+ (OtherType other) const noexcept
+        constexpr auto operator+ (OtherType other) const noexcept
         { return DerivedType<StorageType> (getRawValue() + DerivedType<StorageType> (other).getRawValue()); }
 
         template <typename OtherType>
-        auto operator- (OtherType other) const noexcept
+        constexpr auto operator- (OtherType other) const noexcept
         { return DerivedType<StorageType> (getRawValue() - DerivedType<StorageType> (other).getRawValue()); }
 
         template <typename OtherType>
-        auto operator* (OtherType other) const noexcept
+        constexpr auto operator* (OtherType other) const noexcept
         { return DerivedType<StorageType> (getRawValue() * DerivedType<StorageType> (other).getRawValue()); }
 
         template <typename OtherType>
-        auto operator/ (OtherType other) const noexcept
+        constexpr auto operator/ (OtherType other) const noexcept
         { return DerivedType<StorageType> (getRawValue() / DerivedType<StorageType> (other).getRawValue()); }
 
     protected:
-        Unit() = default;
+        constexpr Unit() = default;
 
-        void setRawValue (StorageType newValue) noexcept { m_rawValue = newValue; }
+        constexpr void setRawValue (StorageType newValue) noexcept { m_rawValue = newValue; }
 
     private:
         StorageType m_rawValue;
