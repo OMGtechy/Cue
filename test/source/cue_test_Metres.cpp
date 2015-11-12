@@ -53,5 +53,29 @@ namespace cue_test
             TypeParam (1)
         );
     }
+
+    TYPED_TEST (MetresTest, SubtractCentimetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Metres<TypeParam> (TypeParam (3)) -
+                Centimetres<TypeParam> (TypeParam (200))
+            ).getRawValue(),
+            TypeParam (1)
+        );
+    }
+
+    TYPED_TEST (MetresTest, SubtractMillimetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Metres<TypeParam> (TypeParam (3)) -
+                Millimetres<TypeParam> (TypeParam (2000))
+            ).getRawValue(),
+            TypeParam (1)
+        );
+    }
 }
 
