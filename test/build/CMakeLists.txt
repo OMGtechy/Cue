@@ -4,7 +4,7 @@ project (cue_tests)
 
 file (GLOB_RECURSE cue_source "../source/*.cpp")
 
-include_directories (../../include ${GTEST_INCLUDE})
+include_directories (../include ../../include ${GTEST_INCLUDE})
 
 link_directories (${GTEST_LIB})
 
