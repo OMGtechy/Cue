@@ -6,6 +6,8 @@ namespace cue_test
 
     TYPED_TEST_CASE (CentimetresTest, TestTypes);
 
+    // operator+
+
     TYPED_TEST (CentimetresTest, AddSameType)
     {
         ASSERT_EQ
@@ -42,6 +44,8 @@ namespace cue_test
         );
     }
 
+    // operator-
+
     TYPED_TEST (CentimetresTest, SubtractSameType)
     {
         ASSERT_EQ
@@ -75,6 +79,82 @@ namespace cue_test
                 Metres<TypeParam> (TypeParam (1))
             ).getRawValue(),
             TypeParam (100)
+        );
+    }
+
+    // operator*
+
+    TYPED_TEST (CentimetresTest, MultiplySameType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Centimetres<TypeParam> (TypeParam (2)) *
+                Centimetres<TypeParam> (TypeParam (3))
+            ).getRawValue(),
+            TypeParam (6)
+        );
+    }
+
+    TYPED_TEST (CentimetresTest, MultiplyMillimetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Centimetres<TypeParam> (TypeParam (2)) *
+                Millimetres<TypeParam> (TypeParam (20))
+            ).getRawValue(),
+            TypeParam (4)
+        );
+    }
+
+    TYPED_TEST (CentimetresTest, MultiplyMetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Centimetres<TypeParam> (TypeParam (2)) *
+                Metres<TypeParam> (TypeParam (1))
+            ).getRawValue(),
+            TypeParam (200)
+        );
+    }
+
+    // operator/
+
+    TYPED_TEST (CentimetresTest, DivideSameType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Centimetres<TypeParam> (TypeParam (6)) /
+                Centimetres<TypeParam> (TypeParam (3))
+            ).getRawValue(),
+            TypeParam (2)
+        );
+    }
+
+    TYPED_TEST (CentimetresTest, DivideMillimetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Centimetres<TypeParam> (TypeParam (2)) /
+                Millimetres<TypeParam> (TypeParam (10))
+            ).getRawValue(),
+            TypeParam (2)
+        );
+    }
+
+    TYPED_TEST (CentimetresTest, DivideMetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Centimetres<TypeParam> (TypeParam (400)) /
+                Metres<TypeParam> (TypeParam (2))
+            ).getRawValue(),
+            TypeParam (2)
         );
     }
 }
