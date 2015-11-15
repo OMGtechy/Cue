@@ -6,6 +6,8 @@ namespace cue_test
 
     TYPED_TEST_CASE (MetresTest, TestTypes);
 
+    // operator+
+
     TYPED_TEST (MetresTest, AddSameType)
     {
         ASSERT_EQ
@@ -42,6 +44,8 @@ namespace cue_test
         );
     }
 
+    // operator-
+
     TYPED_TEST (MetresTest, SubtractSameType)
     {
         ASSERT_EQ
@@ -75,6 +79,82 @@ namespace cue_test
                 Millimetres<TypeParam> (TypeParam (2000))
             ).getRawValue(),
             TypeParam (1)
+        );
+    }
+
+    // operator*
+
+    TYPED_TEST (MetresTest, MultiplySameType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Metres<TypeParam> (TypeParam (3)) *
+                Metres<TypeParam> (TypeParam (2))
+            ).getRawValue(),
+            TypeParam (6)
+        );
+    }
+
+    TYPED_TEST (MetresTest, MultiplyCentimetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Metres<TypeParam> (TypeParam (3)) *
+                Centimetres<TypeParam> (TypeParam (200))
+            ).getRawValue(),
+            TypeParam (6)
+        );
+    }
+
+    TYPED_TEST (MetresTest, MultiplyMillimetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Metres<TypeParam> (TypeParam (3)) *
+                Millimetres<TypeParam> (TypeParam (2000))
+            ).getRawValue(),
+            TypeParam (6)
+        );
+    }
+
+    // operator/
+
+    TYPED_TEST (MetresTest, DivideSameType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Metres<TypeParam> (TypeParam (4)) /
+                Metres<TypeParam> (TypeParam (2))
+            ).getRawValue(),
+            TypeParam (2)
+        );
+    }
+
+    TYPED_TEST (MetresTest, DivideCentimetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Metres<TypeParam> (TypeParam (4)) /
+                Centimetres<TypeParam> (TypeParam (200))
+            ).getRawValue(),
+            TypeParam (2)
+        );
+    }
+
+    TYPED_TEST (MetresTest, DivideMillimetresSameStorageType)
+    {
+        ASSERT_EQ
+        (
+            (
+                Metres<TypeParam> (TypeParam (4)) /
+                Millimetres<TypeParam> (TypeParam (2000))
+            ).getRawValue(),
+            TypeParam (2)
         );
     }
 }
