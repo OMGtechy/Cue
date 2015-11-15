@@ -39,21 +39,27 @@ namespace cue
     };
 
     template <typename StorageType>
-    constexpr Metres<StorageType>::Metres (const Millimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() / StorageType (1000)); }
+    constexpr Metres<StorageType>::Metres (const Millimetres<StorageType>& other) noexcept
+    { this->setRawValue (other.getRawValue() / StorageType (1000)); }
 
     template <typename StorageType>
-    constexpr Metres<StorageType>::Metres (const Centimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() / StorageType (100)); }
+    constexpr Metres<StorageType>::Metres (const Centimetres<StorageType>& other) noexcept
+    { this->setRawValue (other.getRawValue() / StorageType (100)); }
 
     template <typename StorageType>
-    constexpr Centimetres<StorageType>::Centimetres (const Millimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() / StorageType (10)); }
+    constexpr Centimetres<StorageType>::Centimetres (const Millimetres<StorageType>& other) noexcept
+    { this->setRawValue (other.getRawValue() / StorageType (10)); }
 
     template <typename StorageType>
-    constexpr Centimetres<StorageType>::Centimetres (const Metres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() * StorageType (100)); }
+    constexpr Centimetres<StorageType>::Centimetres (const Metres<StorageType>& other) noexcept
+    { this->setRawValue (other.getRawValue() * StorageType (100)); }
 
     template <typename StorageType>
-    constexpr Millimetres<StorageType>::Millimetres (const Centimetres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() * StorageType (10)); }
+    constexpr Millimetres<StorageType>::Millimetres (const Centimetres<StorageType>& other) noexcept
+    { this->setRawValue (other.getRawValue() * StorageType (10)); }
 
     template <typename StorageType>
-    constexpr Millimetres<StorageType>::Millimetres (const Metres<StorageType>& other) noexcept { this->setRawValue (other.getRawValue() * StorageType (1000)); }
+    constexpr Millimetres<StorageType>::Millimetres (const Metres<StorageType>& other) noexcept
+    { this->setRawValue (other.getRawValue() * StorageType (1000)); }
 }
 
