@@ -1,20 +1,5 @@
-#include <gtest/gtest.h>
+#pragma once
 
+#include <cue_test.hpp>
 #include <cue_Distance.hpp>
-
-namespace cue_test
-{
-    using namespace ::cue;
-    using TestTypes = ::testing::Types
-    <
-        unsigned int,
-        signed int,
-        unsigned long,
-        signed long,
-        unsigned long long,
-        signed long long,
-        float,
-        double
-    >;
-}
 
