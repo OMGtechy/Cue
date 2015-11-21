@@ -75,10 +75,10 @@ namespace cue_test
         ASSERT_EQ
         (
             (
-                Millimetres<TypeParam> (TypeParam (100)) -
-                Centimetres<TypeParam> (TypeParam (5))
+                Millimetres<TypeParam> (TypeParam (6000)) -
+                Metres<TypeParam> (TypeParam (5))
             ).getRawValue(),
-            TypeParam (50)
+            TypeParam (1000)
         );
     }
 
